@@ -3,7 +3,7 @@ class Solution {
             double res = 1;
             do {
                 res = (res + x / res) / 2;
-            } while (Math.abs(res * res - x) > 0.4);
+            } while (Math.abs(res * res - x) > 0.5);
             return (int) res;
         }
 }
