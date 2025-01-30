@@ -1,16 +1,24 @@
 class Solution {
-        public boolean isPalindrome(String s) {
+ public boolean isPalindrome(String s) {
             String value = s.trim().toLowerCase();
-            String rotate = "";
-            String valueS = "";
-
-            for (int i = value.length() - 1; i >= 0; i--) {
-                if (Character.isLetter(value.charAt(i)) || Character.isDigit(value.charAt(i))) {
-                    rotate = rotate.concat(String.valueOf(value.charAt(i)));
-                    valueS = value.charAt(i) + valueS;
+            if (value.isEmpty()) return true;
+            do {
+                if (!Character.isLetter(value.charAt(0)) && !Character.isDigit(value.charAt(0))) {
+                    value = value.substring(1, value.length());
+                    continue;
                 }
-            }
-            if (valueS.equals(rotate)) {
+                if (!Character.isLetter(value.charAt(value.length() - 1)) && !Character.isDigit(value.charAt(value.length() - 1))) {
+                    value = value.substring(0, value.length() - 1);
+                    continue;
+                }
+                if (value == "" || value.length() == 1)
+                    return true;
+                if (value.charAt(value.length() - 1) != value.charAt(0)) return false;
+                value = value.substring(1, value.length());
+                value = value.substring(0, value.length() - 1);
+            } while (value != "");
+
+            if (value == "") {
                 return true;
             } else return false;
         }
