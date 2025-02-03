@@ -15,6 +15,11 @@
  */
 class Solution {
  public boolean isSymmetric(TreeNode root) {
+            if (root.left == null && root.right != null ||
+                    root.left != null && root.right == null) return false;
+            else if (root.left == null && root.right == null) return true;
+            TreeNode Left = root.left;
+
             Stack<TreeNode> branchLeft = new Stack<>();
             Stack<TreeNode> branchRight = new Stack<>();
             List<Integer> valuesLeft = new ArrayList<>();
@@ -33,6 +38,7 @@ class Solution {
                     valuesRight.add(rootRight.val);
                     rootRight = rootRight.right;
                 }
+                if (rootRight == Left) break;
                 if (!valuesLeft.equals(valuesRight)) return false;
                 root = branchLeft.pop();
                 root = root.right;
