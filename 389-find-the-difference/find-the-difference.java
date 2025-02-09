@@ -1,8 +1,13 @@
 class Solution {
     public char findTheDifference(String s, String t) {
-                    Stack<Character> stack = new Stack<>();
-            for (char c : t.toCharArray()) stack.add(c);
-            for (char c : s.toCharArray()) stack.remove(stack.indexOf(c));
-            return stack.pop();
+            for (char cs : s.toCharArray()) {
+                for (int i = 0; i < t.length(); i++)
+                    if (t.charAt(i) == cs) {
+                        t = t.replaceFirst(String.valueOf(cs), "");
+                        break;
+                    }
+            }
+            t = t.trim();
+            return t.charAt(0);
     }
 }
