@@ -5,7 +5,7 @@ class Solution {
             int minPrice = prices[0];
             for (int i : prices) {
                 maxPtofit = Math.max(maxPtofit, i - minPrice);
-                minPrice = Math.min(minPrice, i);
+                if (minPrice > i) minPrice = i;
             }
             return maxPtofit;
     }
